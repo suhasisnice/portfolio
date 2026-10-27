@@ -1,0 +1,599 @@
+<title>Sai Suhas Maddali</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+<style>
+/* Direction: NEXA layered waves — distinct full-bleed section bands with
+   crisp borders between them. Each section is its own visual layer with a
+   different background color, creating the "wave" effect the eye rides. */
+:root {
+  --bg: #f5f0e6;
+  --fg: #111;
+  --fg-soft: #444;
+  --orange: #f26522;
+  --blue: #2557d6;
+  --yellow: #fbbf24;
+  --green: #16a34a;
+  --pink: #e6007e;
+  --card: #fff;
+  --border: #111;
+  --display: 'Lilita One', Impact, sans-serif;
+  --body: 'DM Sans', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--body);
+  padding-block: 0; margin: 0;
+  line-height: 1.6; font-size: 1rem;
+}
+a { color: inherit; }
+a:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+
+/* ---- Full-bleed section bands ---- */
+.band {
+  border-bottom: 3px solid var(--border);
+  position: relative;
+}
+.band-inner {
+  max-width: 840px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* Band colors */
+.band-cream  { background: var(--bg); }
+.band-white  { background: #fff; }
+.band-orange { background: var(--orange); color: #fff; }
+.band-blue   { background: var(--blue); color: #fff; }
+.band-yellow { background: var(--yellow); color: var(--fg); }
+.band-black  { background: var(--fg); color: var(--bg); }
+
+/* ---- Nav bar ---- */
+.nav {
+  padding: 1rem 0;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.nav-logo {
+  font-family: var(--display); font-size: 1.3rem;
+  text-transform: uppercase;
+}
+.nav-links { display: flex; gap: 1.5rem; font-size: 0.85rem; font-weight: 600; }
+.nav-links a { text-decoration: none; }
+.nav-links a:hover { text-decoration: underline; }
+
+/* ---- Hero ---- */
+.hero-band {
+  padding: 3rem 0 3.5rem;
+  overflow: hidden;
+  position: relative;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+.hero-left { position: relative; z-index: 2; }
+
+/* Giant title */
+.hero-title {
+  font-family: var(--display);
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  line-height: 0.88; margin: 0;
+  text-transform: uppercase;
+  color: var(--orange);
+  -webkit-text-stroke: 3px var(--border);
+  paint-order: stroke fill;
+}
+.hero-title .white {
+  color: var(--card);
+  -webkit-text-stroke: 3px var(--border);
+}
+.hero-title .blue {
+  color: var(--blue);
+  -webkit-text-stroke: 3px var(--border);
+}
+.hero-tagline {
+  font-size: 0.95rem; color: var(--fg-soft);
+  margin: 1.25rem 0 0; max-width: 440px;
+  line-height: 1.55; font-weight: 500;
+}
+.hero-arrow {
+  margin-top: 1.5rem; display: inline-block;
+}
+.hero-arrow svg { width: 40px; height: 50px; }
+
+/* ---- Browser doodle ---- */
+.hero-right { position: relative; z-index: 2; }
+.browser-doodle {
+  width: 100%; max-width: 460px;
+  margin: 0 auto;
+  position: relative;
+}
+.browser-frame {
+  background: var(--card);
+  border: 3px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 6px 6px 0 var(--border);
+  overflow: hidden;
+}
+.browser-bar {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 12px;
+  border-bottom: 3px solid var(--border);
+  background: var(--bg);
+}
+.browser-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  border: 2px solid var(--border);
+}
+.browser-dot.r { background: #ff5f57; }
+.browser-dot.y { background: #febc2e; }
+.browser-dot.g { background: #28c840; }
+.browser-url {
+  flex: 1; margin-left: 8px;
+  background: var(--card); border: 2px solid var(--border);
+  border-radius: 6px; padding: 3px 10px;
+  font-family: 'DM Sans', monospace; font-size: 0.7rem;
+  color: var(--fg-soft);
+}
+.browser-body {
+  padding: 1.2rem 1rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  line-height: 1.7;
+  color: var(--fg);
+  min-height: 180px;
+}
+.code-kw { color: var(--blue); font-weight: 700; }
+.code-fn { color: var(--orange); font-weight: 700; }
+.code-str { color: var(--green); }
+.code-cm { color: #999; font-style: italic; }
+.code-line { display: flex; gap: 0.6em; }
+.code-num { color: #bbb; user-select: none; min-width: 1.5em; text-align: right; }
+
+/* Doodle decorations around the browser */
+.doodle {
+  position: absolute; pointer-events: none; z-index: 3;
+}
+.doodle-cursor {
+  bottom: -18px; left: 60%;
+}
+.doodle-sparkle {
+  top: -12px; right: -8px;
+}
+.doodle-coffee {
+  bottom: 20px; left: -36px;
+}
+.doodle-squiggle {
+  top: 40%; right: -30px;
+}
+.doodle-star {
+  top: -20px; left: 30%;
+}
+
+/* Stickers — layered on top */
+.sticker {
+  font-family: var(--display); font-size: 0.72rem;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  padding: 0.55rem 0.9rem; border-radius: 4px;
+  border: 2.5px solid var(--border); line-height: 1.2;
+  text-align: center; box-shadow: 2px 2px 0 var(--border);
+  position: absolute; z-index: 4;
+}
+.st-yellow { background: var(--yellow); }
+.st-blue { background: var(--blue); color: #fff; }
+.st-orange { background: var(--orange); color: #fff; }
+
+@media (max-width: 700px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-band .sticker { display: none; }
+  .hero-title { font-size: clamp(3rem, 12vw, 5rem); }
+  .browser-doodle { max-width: 340px; }
+  .doodle-coffee, .doodle-squiggle { display: none; }
+}
+
+/* ---- Stats band ---- */
+.stats-band { padding: 1.25rem 0; }
+.stats-row {
+  display: flex; gap: 3rem; align-items: baseline;
+  flex-wrap: wrap;
+}
+.stat-item strong {
+  font-family: var(--display); font-size: 1.6rem; margin-right: 0.3rem;
+}
+.stat-item span { font-size: 0.82rem; }
+
+/* ---- Projects band ---- */
+.projects-band { padding: 2.5rem 0 3rem; }
+.section-head {
+  display: flex; align-items: center; gap: 0.5rem;
+  margin: 0 0 1.5rem;
+}
+.section-head h2 {
+  font-family: var(--display); font-size: 1.7rem;
+  text-transform: uppercase; margin: 0;
+}
+.star-svg { width: 24px; height: 24px; }
+
+.projects { display: flex; flex-direction: column; gap: 0.75rem; }
+.project {
+  background: var(--card);
+  border: 2.5px solid var(--border);
+  border-radius: 12px; box-shadow: 3px 3px 0 var(--border);
+  padding: 1.4rem 1.4rem 1.4rem 1.5rem;
+  display: grid; grid-template-columns: 6px 1fr;
+  gap: 0 1.25rem; align-items: start;
+  transition: transform 0.12s, box-shadow 0.12s;
+  overflow: hidden;
+}
+.project:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--border);
+}
+.project-bar {
+  width: 6px; border-radius: 3px;
+  align-self: stretch; margin: -1.4rem 0;
+  margin-left: -1.5rem;
+}
+.bar-orange { background: var(--orange); }
+.bar-blue { background: var(--blue); }
+.bar-pink { background: var(--pink); }
+.bar-green { background: var(--green); }
+.bar-black { background: var(--fg); }
+
+.project-content { min-width: 0; }
+.project-top {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  gap: 0.3rem 0.8rem; margin-bottom: 0.4rem;
+}
+.project-name {
+  font-family: var(--display); font-size: 1.4rem;
+  text-transform: uppercase; margin: 0; line-height: 1.1;
+}
+.project-name a { text-decoration: none; }
+.project-name a:hover { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 3px; }
+.project-tech {
+  font-size: 0.72rem; color: var(--fg-soft); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.project-desc {
+  font-size: 0.88rem; color: var(--fg-soft); font-weight: 500;
+  line-height: 1.5; margin: 0 0 0.6rem;
+}
+.badges { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.badge {
+  font-family: var(--display); font-size: 0.68rem;
+  text-transform: uppercase; letter-spacing: 0.03em;
+  padding: 0.2rem 0.55rem; border-radius: 50px;
+  border: 2px solid currentColor; white-space: nowrap;
+}
+.bd-orange { color: var(--orange); }
+.bd-blue { color: var(--blue); }
+.bd-yellow { background: var(--yellow); color: var(--fg); border-color: var(--yellow); }
+.bd-green { color: var(--green); }
+.bd-pink { color: var(--pink); }
+
+/* ---- Marquee banner ---- */
+.marquee-band {
+  padding: 0.8rem 0; overflow: hidden; white-space: nowrap;
+}
+.marquee-text {
+  font-family: var(--display); font-size: 1.1rem;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  display: inline-block;
+  animation: marquee 18s linear infinite;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-text { animation: none; }
+}
+
+/* ---- Services band ---- */
+.services-band { padding: 2.5rem 0 3rem; }
+.services { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+@media (max-width: 500px) { .services { grid-template-columns: 1fr; } }
+.service {
+  background: var(--card); border: 2.5px solid var(--border);
+  border-radius: 12px; padding: 1.4rem;
+  box-shadow: 3px 3px 0 var(--border);
+}
+.service-title {
+  font-family: var(--display); font-size: 1.2rem;
+  text-transform: uppercase; margin: 0 0 0.4rem;
+}
+.service p {
+  color: var(--fg-soft); font-size: 0.88rem; font-weight: 500;
+  margin: 0; line-height: 1.5;
+}
+
+/* ---- CTA band ---- */
+.cta-band { padding: 3rem 0; }
+.cta-grid {
+  display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 0.75rem;
+}
+@media (max-width: 550px) { .cta-grid { grid-template-columns: 1fr; } }
+.cta-left { position: relative; }
+.cta-left h2 {
+  font-family: var(--display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  text-transform: uppercase; margin: 0 0 0.6rem; line-height: 0.95;
+}
+.cta-left p { font-size: 0.9rem; opacity: 0.9; margin: 0 0 0.5rem; font-weight: 500; }
+.cta-pointer {
+  font-family: var(--display); font-size: 1.1rem;
+  text-transform: uppercase; letter-spacing: 0.03em;
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.cta-pointer svg { width: 28px; height: 20px; }
+
+.cta-right {
+  background: var(--bg); border: 2.5px solid var(--border);
+  border-radius: 12px; padding: 1.5rem;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+  color: var(--fg);
+}
+.cta-right h3 {
+  font-family: var(--display); font-size: 1rem;
+  text-transform: uppercase; margin: 0 0 0.6rem;
+}
+.contact-row { font-size: 0.88rem; font-weight: 600; margin: 0.3rem 0; }
+.contact-row .clabel { color: var(--fg-soft); font-weight: 400; font-size: 0.78rem; margin-right: 0.25rem; }
+.contact-row a { color: var(--orange); text-decoration: none; }
+.contact-row a:hover { text-decoration: underline; }
+
+/* ---- Footer ---- */
+.footer-band { padding: 1.25rem 0; border-bottom: none; }
+.footer-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 0.5rem;
+  font-size: 0.8rem; color: var(--fg-soft);
+}
+.footer-logo { font-family: var(--display); font-size: 1.1rem; color: var(--fg); text-transform: uppercase; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+</style>
+
+<!-- NAV BAND -->
+<div class="band band-cream">
+  <div class="band-inner">
+    <nav class="nav">
+      <div class="nav-logo">Sai Suhas</div>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<!-- HERO BAND -->
+<div class="band band-cream hero-band">
+  <!-- Stickers scattered -->
+  <div class="sticker st-yellow" style="top:8%;right:6%;transform:rotate(8deg)">Good Code<br>Better Days</div>
+  <div class="sticker st-orange" style="bottom:10%;left:42%;transform:rotate(4deg)">Ship It ✦</div>
+
+  <div class="band-inner">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <h1 class="hero-title">
+          <span class="white">BUILD</span><br>
+          <span>SHIP</span><br>
+          <span class="blue">AUTO&shy;MATE.</span>
+        </h1>
+        <p class="hero-tagline">I take messy real-world inputs — government paperwork, bank SMS, citizen complaints — and turn them into systems that actually work. Web dev & automation, freelance.</p>
+        <div class="hero-arrow">
+          <svg viewBox="0 0 40 55" fill="none" stroke="var(--border)" stroke-width="2.5" stroke-linecap="round"><path d="M20 2 C20 2 18 30 20 42"/><path d="M12 35 L20 48 L28 35"/></svg>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="browser-doodle">
+          <!-- Doodle: sparkle top-right -->
+          <div class="doodle doodle-sparkle">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><path d="M18 2L20.5 14 32 18 20.5 22 18 34 15.5 22 4 18 15.5 14Z" fill="var(--yellow)" stroke="var(--border)" stroke-width="1.5"/></svg>
+          </div>
+          <!-- Doodle: star top-left -->
+          <div class="doodle doodle-star">
+            <svg width="28" height="28" viewBox="0 0 50 50"><polygon points="25,2 31,18 49,18 34,28 39,46 25,35 11,46 16,28 1,18 19,18" fill="var(--orange)" stroke="var(--border)" stroke-width="1.5"/></svg>
+          </div>
+          <!-- Doodle: coffee cup left -->
+          <div class="doodle doodle-coffee">
+            <svg width="32" height="38" viewBox="0 0 32 38" fill="none" stroke="var(--border)" stroke-width="2" stroke-linecap="round">
+              <rect x="4" y="14" width="20" height="20" rx="3" fill="var(--yellow)"/>
+              <path d="M24 18 C30 18 30 30 24 30"/>
+              <path d="M10 10 C10 6 14 6 14 10" opacity="0.4"/>
+              <path d="M16 8 C16 4 20 4 20 8" opacity="0.4"/>
+            </svg>
+          </div>
+          <!-- Doodle: squiggly line right -->
+          <div class="doodle doodle-squiggle">
+            <svg width="28" height="60" viewBox="0 0 28 60" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round"><path d="M14 2 C2 12 26 20 14 30 C2 40 26 48 14 58"/></svg>
+          </div>
+          <!-- Doodle: cursor bottom -->
+          <div class="doodle doodle-cursor">
+            <svg width="28" height="34" viewBox="0 0 28 34" fill="none"><path d="M4 2L4 26L10 20L16 30L20 28L14 18L22 18Z" fill="var(--card)" stroke="var(--border)" stroke-width="2" stroke-linejoin="round"/></svg>
+          </div>
+
+          <!-- The browser window -->
+          <div class="browser-frame">
+            <div class="browser-bar">
+              <div class="browser-dot r"></div>
+              <div class="browser-dot y"></div>
+              <div class="browser-dot g"></div>
+              <div class="browser-url">saisuhas.dev</div>
+            </div>
+            <div class="browser-body">
+              <div class="code-line"><span class="code-num">1</span> <span class="code-kw">const</span> <span class="code-fn">buildCoolStuff</span> = () => {</div>
+              <div class="code-line"><span class="code-num">2</span> &nbsp;&nbsp;<span class="code-kw">let</span> coffee = <span class="code-str">"☕ infinite"</span>;</div>
+              <div class="code-line"><span class="code-num">3</span> &nbsp;&nbsp;<span class="code-kw">let</span> bugs = <span class="code-str">0</span>; <span class="code-cm">// optimistic</span></div>
+              <div class="code-line"><span class="code-num">4</span></div>
+              <div class="code-line"><span class="code-num">5</span> &nbsp;&nbsp;<span class="code-kw">while</span> (ideas.<span class="code-fn">length</span>) {</div>
+              <div class="code-line"><span class="code-num">6</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-fn">ship</span>(ideas.<span class="code-fn">pop</span>());</div>
+              <div class="code-line"><span class="code-num">7</span> &nbsp;&nbsp;&nbsp;&nbsp;coffee.<span class="code-fn">refill</span>();</div>
+              <div class="code-line"><span class="code-num">8</span> &nbsp;&nbsp;}</div>
+              <div class="code-line"><span class="code-num">9</span> &nbsp;&nbsp;<span class="code-kw">return</span> <span class="code-str">"🚀 shipped!"</span>;</div>
+              <div class="code-line"><span class="code-num">10</span> };</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS BAND — white -->
+<div class="band band-white stats-band">
+  <div class="band-inner">
+    <div class="stats-row">
+      <div class="stat-item"><strong>5+</strong><span>Shipped projects</span></div>
+      <div class="stat-item"><strong>93%</strong><span>Best AI accuracy</span></div>
+      <div class="stat-item"><strong>0</strong><span>Unnecessary abstractions</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS BAND — cream -->
+<div class="band band-cream projects-band" id="projects">
+  <div class="band-inner">
+    <div class="section-head">
+      <h2>Projects</h2>
+      <svg class="star-svg" viewBox="0 0 24 24"><polygon points="12,1 15,9 24,9 17,14 19,23 12,18 5,23 7,14 0,9 9,9" fill="var(--orange)"/></svg>
+    </div>
+
+    <div class="projects">
+      <div class="project">
+        <div class="project-bar bar-orange"></div>
+        <div class="project-content">
+          <div class="project-top">
+            <h3 class="project-name" style="color:var(--orange)"><a href="https://github.com/SaiSuhasM/BhoomiMitra" target="_blank">BhoomiMitra</a></h3>
+            <span class="project-tech">Python · FastAPI · React · PostgreSQL</span>
+          </div>
+          <p class="project-desc">Land acquisition platform for the RFCTLARR Act. Tracks proposals through every statutory stage — cases, parcels, notices, objections, compensation. Rules engine raises alerts on stalls, missing docs, timeline breaches. Seven government roles, invite-code signup.</p>
+          <div class="badges">
+            <span class="badge bd-orange">6 Alert Rules</span>
+            <span class="badge bd-blue">7 Roles</span>
+            <span class="badge bd-yellow">SIH 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-bar bar-blue"></div>
+        <div class="project-content">
+          <div class="project-top">
+            <h3 class="project-name" style="color:var(--blue)"><a href="https://github.com/SaiSuhasM/Pinch" target="_blank">Pinch</a></h3>
+            <span class="project-tech">React Native · Expo · TypeScript · Kotlin · SQLCipher</span>
+          </div>
+          <p class="project-desc">Offline-first Android money app. Kotlin module captures bank SMS and payment notifications, parser extracts amounts and payees, encrypted on-device storage. Budgeting, savings goals, friend splits. No server, no account.</p>
+          <div class="badges">
+            <span class="badge bd-green">86% Detection</span>
+            <span class="badge bd-blue">100% Accuracy</span>
+            <span class="badge bd-orange">Zero Servers</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-bar bar-pink"></div>
+        <div class="project-content">
+          <div class="project-top">
+            <h3 class="project-name" style="color:var(--pink)"><a href="https://github.com/SaiSuhasM/grievance-ai" target="_blank">GrievanceAI</a></h3>
+            <span class="project-tech">Python · Gemini API · pgvector · NLP</span>
+          </div>
+          <p class="project-desc">Civic complaint portal with AI routing. Classifies into 9 departments, assigns priority, confidence-gates uncertain cases. SLA escalation and ticket tracking.</p>
+          <div class="badges">
+            <span class="badge bd-pink">93% Accuracy</span>
+            <span class="badge bd-blue">83.5% Priority</span>
+            <span class="badge bd-yellow">200 Test Cases</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-bar bar-green"></div>
+        <div class="project-content">
+          <div class="project-top">
+            <h3 class="project-name" style="color:var(--green)">Spotters</h3>
+            <span class="project-tech">React · Node.js · Express · MySQL</span>
+          </div>
+          <p class="project-desc">Radiology education platform. Case-based diagnostic learning, structured tests, results review, progress tracking. JWT auth, eleven-phase curriculum.</p>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-bar bar-black"></div>
+        <div class="project-content">
+          <div class="project-top">
+            <h3 class="project-name">DevStation</h3>
+            <span class="project-tech">ESP32 · MicroPython · Telegram Bot API</span>
+          </div>
+          <p class="project-desc">Hardware wake system. ESP32 + Telegram wakes a desktop PC remotely over LAN. Handles CGNAT, flaky home network, secure bot auth.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE BAND — orange -->
+<div class="band band-orange marquee-band">
+  <div class="marquee-text">Web Dev · Automation · React · Node.js · Python · FastAPI · PostgreSQL · ESP32 · AI/NLP · Kotlin · TypeScript&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;Web Dev · Automation · React · Node.js · Python · FastAPI · PostgreSQL · ESP32 · AI/NLP · Kotlin · TypeScript&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;</div>
+</div>
+
+<!-- SERVICES BAND — white -->
+<div class="band band-white services-band" id="services">
+  <div class="band-inner">
+    <div class="section-head">
+      <h2>What I Do</h2>
+      <svg width="28" height="14" viewBox="0 0 28 14"><path d="M2 7c3-5 6 5 9 0s6 5 9 0s3 5 6 0" fill="none" stroke="var(--orange)" stroke-width="2.5" stroke-linecap="round"/></svg>
+    </div>
+    <div class="services">
+      <div class="service">
+        <h3 class="service-title">Web Dev</h3>
+        <p>Full-stack with React, Node.js, Python, FastAPI, PostgreSQL. Dashboards, admin panels, public tools. Working software, no over-engineering.</p>
+      </div>
+      <div class="service">
+        <h3 class="service-title">Automation</h3>
+        <p>Bots, scrapers, scheduled pipelines, API integrations, browser automation, email workflows. If a person does it on a schedule, it should be a script.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BAND — orange -->
+<div class="band band-orange cta-band" id="contact">
+  <div class="band-inner">
+    <div class="cta-grid">
+      <div class="cta-left">
+        <h2>Let's build<br>something.</h2>
+        <p>Freelance web dev and automation. Available for projects.</p>
+        <div class="cta-pointer">
+          <svg viewBox="0 0 28 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M2 10H22"/><path d="M16 4L22 10L16 16"/></svg>
+          reach out over there
+        </div>
+      </div>
+      <div class="cta-right">
+        <h3>Stay in the loop</h3>
+        <div class="contact-row"><span class="clabel">Email</span> <a href="mailto:maddalisuhas1212@gmail.com">maddalisuhas1212@gmail.com</a></div>
+        <div class="contact-row"><span class="clabel">GitHub</span> <a href="https://github.com/SaiSuhasM" target="_blank">github.com/SaiSuhasM</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER BAND — cream -->
+<div class="band band-cream footer-band" style="border-bottom:none">
+  <div class="band-inner">
+    <div class="footer-inner">
+      <span class="footer-logo">Sai Suhas</span>
+      <span>&copy; 2026. All rights reserved.</span>
+    </div>
+  </div>
+</div>
